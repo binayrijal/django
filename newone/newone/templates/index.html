@@ -47,6 +47,13 @@
         <th>Thada</th>
     </tr>
    </table>
+   <form action="submitted" method="post">
+    {% csrf_token%}
+    Name:<input type="text" name="name" placeholder="enter your name">
+    Address:<input type="text" name="address" placeholder="enter your address" >
+    Email:<input type="email" name="email" placeholder="enter email here">
+    <input type="submit" name="submit">
+   </form>
 </body>
 </html>
 {%endblock%}
