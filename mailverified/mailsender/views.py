@@ -56,9 +56,13 @@ def success(request):
 def verify(request,auth_token):
     profile_obj=Profile.objects.filter(auth_token=auth_token).first()
     if profile_obj:
-     profile_obj.is_verified=True
-     profile_obj.save()
-     messages.success(request,'email is verified')
-     return render(request,'home.html')
+     if profile_obj.is_verified:
+         messages.success(request,'you are already verified')
+         return redirect(request,'home.html')
+     else:
+      profile_obj.is_verified=True
+      profile_obj.save()
+      messages.success(request,'email is verified')
+      return render(request,'home.html')
     else:
      return render(request,'error.html')
